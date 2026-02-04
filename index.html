@@ -26,6 +26,7 @@
   <img src="WhatsApp Image 2026-02-05 at 02.14.50.jpeg" alt="Bakso Mamina" style="max-width:170px;width:100%;border-radius:50%;box-shadow:0 8px 20px rgba(0,0,0,0.25);border:6px solid #fff;">
 </div>
 <h1>🍜 BAKSO MAMINA</h1>
+<div style="text-align:center;font-weight:bold;">Warung Bakso Mamina</div>
 <div class="subtitle">Mudah • Cepat • Tinggal Klik</div>
 
 <div class="card">
@@ -92,14 +93,19 @@
 
 <div class="total" id="total">Total: Rp0</div>
 
+<div class="card"><label style="font-weight:600;">Nomor Meja</label><input id="meja" type="number" placeholder="Contoh: 5" style="width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid #ccc;"></div>
+
 <button class="btn-order" onclick="tampilStruk()">🧾 LIHAT STRUK</button>
 
-<div id="struk" class="card" style="display:none;">
-  <h3 style="text-align:center;">🧾 STRUK PESANAN</h3>
-  <div style="text-align:center;font-size:13px;">Warung Bakso Mamina<br>Jam Buka 10.00 - 21.00</div>
-  <div id="isiStruk"></div>
-  <div class="total" id="totalStruk"></div>
-  <button class="btn-order" onclick="kirimWA()">📲 KIRIM VIA WHATSAPP</button>
+<div id="struk" class="card" style="display:none;font-family:'Courier New',monospace;">
+  <h3 style="text-align:center;margin-bottom:4px;">BAKSO MAMINA</h3>
+  <div style="text-align:center;font-size:12px;margin-bottom:8px;">Jl. ____ • 08xx-xxxx-xxxx<br>Jam Buka 10.00 - 21.00</div>
+  <hr>
+  <div id="isiStruk" style="font-size:14px;"></div>
+  <hr>
+  <div class="total" id="totalStruk" style="font-size:16px;"></div>
+  <div style="text-align:center;font-size:12px;margin-top:6px;">Pembayaran: Cash / QRIS</div>
+  <button class="btn-order" style="margin-top:12px;" onclick="kirimWA()">📲 KIRIM VIA WHATSAPP</button>
 </div>
 
 <div class="footer">*Harga sesuai menu • Pembayaran saat pengambilan</div>
@@ -130,9 +136,10 @@ function hitung(){
 
 // Tampilkan struk
 function tampilStruk(){
-  const now = new Date();
-  const waktu = now.toLocaleString('id-ID');
-  let html = '';
+  let meja = document.getElementById('meja').value || '-';
+  let now = new Date();
+  let waktu = now.toLocaleString('id-ID');
+  let html = '<div style="font-size:12px;">Meja: <b>'+meja+'</b><br>'+waktu+'</div><br>';;
   let total = 0;
 
   if(getQty('uj')>0){ html += 'Bakso Urat Jumbo x'+getQty('uj')+'<br>'; total += getQty('uj')*harga.uj; }
@@ -162,4 +169,3 @@ function kirimWA(){
 
 </body>
 </html>
-
